@@ -36,7 +36,7 @@ void ASpeed::initFile(const char* inputFile, const char* outputFile)
 
 void ASpeed::start()
 {
-    int res = pthread_create(&m_ThreadID, NULL, (void* (*)(void*))&ASpeed::run, this);
+    mThread = new std::thread(&ASpeed::run, this);
 }
 
 void ASpeed::run()

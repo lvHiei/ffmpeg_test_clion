@@ -72,9 +72,14 @@ void VVFilterUtil::setFilterDescr(const char* filterDescr)
 
 bool VVFilterUtil::createFilter()
 {
-    int res = pthread_create(&m_ThreadID, NULL, (void* (*)(void*))&VVFilterUtil::run, this);
+    mThread = new std::thread(&VVFilterUtil::run, this);
 //	run();
 	return true;
+}
+
+
+void VVFilterUtil::join() {
+    mThread->join();
 }
 
 void VVFilterUtil::run()

@@ -46,7 +46,11 @@ void AVSpeed::setSpeed(float speed)
 
 void AVSpeed::start()
 {
-    int res = pthread_create(&m_ThreadID, NULL, (void* (*)(void*))&AVSpeed::run, this);
+    mThread = new std::thread(&AVSpeed::run, this);
+}
+
+void AVSpeed::join() {
+    mThread->join();
 }
 
 void AVSpeed::run()

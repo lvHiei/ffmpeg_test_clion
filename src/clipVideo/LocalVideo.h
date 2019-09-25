@@ -5,8 +5,8 @@
 #ifndef BRANCH_LOCAL_VIDEO_LOCALVIDEO_H
 #define BRANCH_LOCAL_VIDEO_LOCALVIDEO_H
 
-#include <pthread.h>
 
+#include <thread>
 #include "../util/const.h"
 
 extern "C"{
@@ -34,8 +34,6 @@ public:
 
     uint32_t getVideoWidth();
     uint32_t getVideoHeight();
-
-    pthread_t getThreadId();
 
     void clipVideo(int64_t startTime, int64_t stopTime, const char* outFilename);
 
@@ -105,7 +103,8 @@ private:
     bool m_bFirstFrame;
 
 private:
-    pthread_t m_ThreadID;
+    std::thread* mThread;
+    std::thread* mEncodeThread;
 
     bool m_bStopped;
     bool m_bWantStop;
@@ -124,8 +123,6 @@ private:
     bool m_bReEncodeDecodeEnded;
     char m_pTempAudioFilename[VV_FILENAME_MAX];
     char m_pTempVideoFilename[VV_FILENAME_MAX];
-
-    pthread_t m_encodeThreadId;
 
     uint32_t m_uEncodeVideoWidth;
     uint32_t m_uEncodeVideoHeight;

@@ -46,7 +46,7 @@ void testFilter()
 	pFilter->initFilter(absVideo, absPic, absOut);
 	pFilter->createFilter();
 
-	pthread_join(pFilter->getThreadId(), NULL);
+	pFilter->join();
 
 	delete pFilter;
 	return;
@@ -87,7 +87,7 @@ void testSpeed()
 	pSpeed->setSpeed(speed);
 	pSpeed->start();
 
-	pthread_join(pSpeed->getThreadId(), NULL);
+	pSpeed->join();
 
 	delete pSpeed;
 }

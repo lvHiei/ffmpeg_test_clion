@@ -8,7 +8,7 @@
 #ifndef AVSPEED_ASPEED_H_
 #define AVSPEED_ASPEED_H_
 
-#include <pthread.h>
+#include <thread>
 
 extern "C"
 {
@@ -28,7 +28,6 @@ public:
 	void initFile(const char* inputFile, const char* outputFile);
 	void start();
 
-	pthread_t getThreadId(){return m_ThreadID;}
 public:
 	virtual void onGotFilteredFrame(AVFrame* frame);
 
@@ -57,7 +56,7 @@ private:
 	char m_pOutputFile[VV_FILENAME_MAX];
 
 private:
-	pthread_t m_ThreadID;
+	std::thread* mThread;
 };
 
 #endif /* AVSPEED_ASPEED_H_ */

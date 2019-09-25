@@ -26,6 +26,7 @@ extern "C"
 #include "libswscale/swscale.h"
 }
 
+#include <thread>
 #include "../util/const.h"
 
 class VVFilterUtil {
@@ -38,8 +39,7 @@ public:
 	void setFilterParam(int angle, long* param, int count);
 	void setFilterDescr(const char* filterDescr);
 	bool createFilter();
-
-	pthread_t getThreadId()const{ return m_ThreadID;}
+	void join();
 
 private:
 	void run();
@@ -82,7 +82,7 @@ private:
 	int m_iFilterAngle;
 	long* m_lFilterParam;
 
-	pthread_t m_ThreadID;
+	std::thread* mThread;
 };
 
 #endif /* AVFILTER_VVFILTERUTIL_H_ */

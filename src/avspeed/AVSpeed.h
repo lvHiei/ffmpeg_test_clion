@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include <pthread.h>
+#include <thread>
 
 extern "C"
 {
@@ -28,7 +29,7 @@ public:
 	void initFile(const char* origin, const char* out);
 	void setSpeed(float speed);
 	void start();
-	pthread_t getThreadId(){ return m_ThreadID;}
+	void join();
 
 private:
 	void run();
@@ -52,7 +53,7 @@ private:
 	float m_fSpeed;
 
 private:
-	pthread_t m_ThreadID;
+	std::thread* mThread;
 };
 
 #endif /* AVSPEED_AVSPEED_H_ */

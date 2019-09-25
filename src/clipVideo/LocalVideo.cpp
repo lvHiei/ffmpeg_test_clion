@@ -109,11 +109,7 @@ void LocalVideo::start()
     m_bNeedReEncode = false;
     m_bNeedMuxAudioVideo = false;
     m_bHasError = false;
-    int res = pthread_create(&m_ThreadID, NULL, (void* (*)(void*))&LocalVideo::run, this);
-    if (0 != res) {
-        m_bStopped = true;
-        LOGI("pthread_create error.");
-    }
+    mThread = new std::thread(&LocalVideo::run, this);
 }
 
 void LocalVideo::stop()
@@ -189,11 +185,6 @@ uint32_t LocalVideo::getVideoWidth()
 uint32_t LocalVideo::getVideoHeight()
 {
     return m_uVideoHeight;
-}
-
-pthread_t LocalVideo::getThreadId()
-{
-    return m_ThreadID;
 }
 
 
@@ -1356,7 +1347,7 @@ void LocalVideo::internalClipAndEncodeVideo()
 
 
         // create encode thread
-        pthread_create(&m_encodeThreadId, NULL, (void* (*)(void*))&LocalVideo::encodeThread, this);
+        mEncodeThread = new std::thread(&LocalVideo::encodeThread, this);
 
 
         int64_t startPts_v = AVUtil::getPtsFromMilliseconds(iFmtCtx->streams[videoIdxIn]->time_base, m_iStartTimeMs);
@@ -1637,7 +1628,7 @@ void LocalVideo::internalClipAndEncodeVideo()
 
     m_bReEncodeDecodeEnded = true;
 
-    pthread_join(m_encodeThreadId, NULL);
+    mEncodeThread->join();
 
     if(m_bCanceled){
         clearTempFile();
