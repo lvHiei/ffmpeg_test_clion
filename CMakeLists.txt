@@ -6,7 +6,30 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-reserved-user-defined-literal -Wno-deprecated-declarations")
 include_directories(/usr/local/include)
 
+link_directories(/usr/local/lib)
 
+link_libraries(
+        avformat
+        avcodec
+        avfilter
+        postproc
+        swresample
+        swscale
+        avutil
+        x264
+        fdk-aac
+        z
+        bz2
+        iconv
+        lzma
+        "-framework AudioToolbox"
+        "-framework VideoToolbox"
+        "-framework VideoDecodeAcceleration"
+        "-framework CoreMedia"
+        "-framework CoreVideo"
+        "-framework Security"
+        "-framework CoreFoundation"
+)
 
 add_executable(ffmpeg_test
         src/avfilter/VVFilterUtil.cpp
