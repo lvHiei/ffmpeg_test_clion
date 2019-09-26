@@ -683,7 +683,7 @@ int main() {
 
 //	testPureFilter();
 
-	getFirstFrame("/home/mj/disk/videotest/2017/11/14/test.gif", "/home/mj/disk/videotest/2017/11/14/get.jpg");
-	printf("hello world");
+	getFirstFrame("/Users/mj/fromWindows/test.gif", "/Users/mj/fromWindows/get.jpg");
+	printf("hello world\n");
 	return 0;
 }
