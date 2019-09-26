@@ -8,6 +8,8 @@ include_directories(/usr/local/include)
 
 link_directories(/usr/local/lib)
 
+#according https://debugly.cn/
+
 link_libraries(
         avformat
         avcodec
