@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(ffmpeg_test)
+project(ffmpeg_test_clion)
 
 set(CMAKE_CXX_STANDARD 11)
 
@@ -33,7 +33,7 @@ link_libraries(
         "-framework CoreFoundation"
 )
 
-add_executable(ffmpeg_test
+add_executable(ffmpeg_test_clion
         src/avfilter/VVFilterUtil.cpp
         src/avfilter/VVFilterUtilPure.cpp
 

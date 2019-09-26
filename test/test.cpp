@@ -84,6 +84,7 @@ int work(const char* infile, const char* outfile){
             LOGE("write_packet failed,err:(%d,%s)", ret, av_err2str(ret));
             goto end;
         }
+        av_packet_unref(&pkt);
     }
 
     ret = pFormat->write_tailer();
