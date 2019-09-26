@@ -50,3 +50,11 @@ add_executable(ffmpeg_test
 
         src/ffmpeg_test.cpp
         )
+
+include_directories(test test/av)
+
+add_executable(test_remux
+        test/av/LhAVCodec.cpp
+        test/av/LhAVFormat.cpp
+        test/test.cpp
+        )
