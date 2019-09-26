@@ -236,6 +236,7 @@ int LhAVFormat::close_output_file() {
         }
 
         avformat_free_context(m_pOutFmtCtx);
+        m_pOutFmtCtx = nullptr;
     }
 
     return 0;
