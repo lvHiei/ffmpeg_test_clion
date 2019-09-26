@@ -104,7 +104,7 @@ int VVFilterUtilPure::initFilterForAudio()
     }
 
     snprintf(args, sizeof(args),
-            "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=0x%"PRIx64,
+            "time_base=%d/%d:sample_rate=%d:sample_fmt=%s:channel_layout=0x%" PRIx64,
              1, 44100, m_pCodecContext->sample_rate,
              av_get_sample_fmt_name(m_pCodecContext->sample_fmt), m_pCodecContext->channel_layout);
 

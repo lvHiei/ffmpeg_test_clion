@@ -3,7 +3,7 @@ project(ffmpeg_test)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-reserved-user-defined-literal -Wno-deprecated-declarations")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-reserved-user-defined-literal -Wno-deprecated-declarations")
 include_directories(/usr/local/include)
 
 
